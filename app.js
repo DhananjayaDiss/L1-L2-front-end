@@ -170,3 +170,11 @@ $input.addEventListener("keydown", (e) => {
 
 // Initial message
 addMessage("bot", "Hi. Describe your issue and I will search the Knowledge Bank first.");
+// Navigate to Modify Ticket page
+const modifyTicketBtn = document.getElementById("modifyTicketBtn");
+
+if (modifyTicketBtn) {
+  modifyTicketBtn.addEventListener("click", () => {
+    window.location.href = "modify-ticket.html";
+  });
+}
