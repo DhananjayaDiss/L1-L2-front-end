@@ -1,25 +1,14 @@
 {
-  "name": "l1-ai-agent-desk",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "new-fronrend-l1-l2",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dilaa13/L1-AI-agent-Desk.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Dilaa13/L1-AI-agent-Desk/issues"
-  },
-  "homepage": "https://github.com/Dilaa13/L1-AI-agent-Desk#readme",
-  "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1"
+  "devDependencies": {
+    "vite": "^8.0.1"
   }
 }
