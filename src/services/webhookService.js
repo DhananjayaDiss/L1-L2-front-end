@@ -62,6 +62,7 @@ function normaliseResponse(data) {
     waitingForInput: Boolean(payload?.waitingForInput || resumeUrl !== null),
     executionId,
     resumeUrl,
+    dataTable: payload?.data_table ?? null,
   };
 }
 
@@ -106,6 +107,7 @@ async function request(url, body, attempt = 0, onChunk = null) {
       let executionId = null;
       let resumeUrl = null;
       let waitingForInput = false;
+      let dataTable = null;
       let buffer = '';
 
       while (!done) {
@@ -139,6 +141,7 @@ async function request(url, body, attempt = 0, onChunk = null) {
                 if (parsed.executionId) executionId = parsed.executionId;
                 if (parsed.resumeUrl !== undefined) resumeUrl = parsed.resumeUrl;
                 if (parsed.waitingForInput !== undefined) waitingForInput = parsed.waitingForInput;
+                if (parsed.data_table) dataTable = parsed.data_table;
 
                 if (chunkText) {
                   finalResponse += chunkText;
@@ -158,6 +161,7 @@ async function request(url, body, attempt = 0, onChunk = null) {
                 if (parsed.executionId) executionId = parsed.executionId;
                 if (parsed.resumeUrl !== undefined) resumeUrl = parsed.resumeUrl;
                 if (parsed.waitingForInput !== undefined) waitingForInput = parsed.waitingForInput;
+                if (parsed.data_table) dataTable = parsed.data_table;
 
                 if (chunkText) {
                   finalResponse += chunkText;
@@ -184,10 +188,17 @@ async function request(url, body, attempt = 0, onChunk = null) {
         response: finalResponse,
         waitingForInput,
         executionId,
-        resumeUrl
+        resumeUrl,
+        dataTable
       };
     } else {
-      const data = await res.json();
+      const textResponse = await res.text();
+      let data;
+      try {
+        data = textResponse ? JSON.parse(textResponse) : {};
+      } catch (e) {
+        data = { response: textResponse };
+      }
       console.log(`[webhook] ← `, data);
       return normaliseResponse(data);
     }

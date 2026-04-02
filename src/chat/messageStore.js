@@ -66,6 +66,12 @@ const messageStore = {
       ...(metadata && { metadata }),
     };
     messages.push(msg);
+    
+    // Prevent memory leaks by capping the in-memory array size
+    if (messages.length > config.ui.maxStoredMessages + 20) {
+      messages = messages.slice(-config.ui.maxStoredMessages);
+    }
+
     persist();
     return msg;
   },

@@ -112,7 +112,7 @@ const sessionManager = {
 
   /** Whether a workflow execution has been started (executionId or resumeUrl exists). */
   get hasActiveExecution() {
-    return session.executionId !== null || session.resumeUrl != null;
+    return session.executionId !== null || session.resumeUrl !== null;
   },
 
   /* ── Mutations ──────────────────────────────────────────── */

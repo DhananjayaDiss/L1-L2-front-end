@@ -98,6 +98,7 @@ const chatController = {
           metadata: {
             executionId: result.executionId,
             waitingForInput: result.waitingForInput,
+            dataTable: result.dataTable,
           }
         });
         emit('chat:messageUpdate', { id: streamingMsgId, content: result.response });
@@ -125,6 +126,7 @@ const chatController = {
           metadata: {
             executionId: result.executionId,
             waitingForInput: result.waitingForInput,
+            dataTable: result.dataTable,
           }
         });
         emit('chat:messageUpdate', { id: botMsg.id, content: result.response });
